@@ -1,39 +1,36 @@
-import React, { Component } from 'react'
-import { ConnectedRouter } from 'connected-react-router'
-import routeHistory from 'route-history'
-import { Switch, Route } from 'react-router-dom'
+import React, { Component, ReactNode } from 'react';
+import { ConnectedRouter } from 'connected-react-router';
+import routeHistory from 'route-history';
+import { Switch, Route } from 'react-router-dom';
 import { StyledContainer } from './Rates/style';
-import { Layout } from 'antd'
-import styled from 'styled-components'
+import { Layout } from 'antd';
+import styled from 'styled-components';
+import { View } from '../entities/View';
+import Full from './representations/Full';
+import Bubble from './representations/Bubble';
+import NewWindow from './representations/NewWindow';
+import Rates from './Rates';
+import Header from './Header';
+import { ProgressPlugin } from 'webpack';
 
-import NotFound from './NotFound'
-import Rates from './Rates'
-import Header from './Header'
-import { ProgressPlugin } from 'webpack'
+const { Content } = Layout;
 
-const { Content } = Layout
-
-function App(props) {
+function App({ color, view }) {
+  const applyRepresentation = (): ReactNode => {
+    switch (view) {
+      case View.BUBBLE:
+        return <Bubble color={color} />;
+      case View.NEW_WINDOW:
+        return <NewWindow />;
+      default:
+        return <Full color={color} />;
+    }
+  };
   return (
     <ConnectedRouter history={routeHistory}>
-      <Layout style={{ minHeight: '100%' }}>
-        <Header>Chat-solution</Header>
-        <StyledContainer>
-          <div style={{color: props.color}}>
-            <h1>Hello World</h1>
-          </div>
-        </StyledContainer>
-      </Layout>
+      {applyRepresentation()}
     </ConnectedRouter>
-  )
+  );
 }
 
-export default styled(App)`
-    background:#001529;
-  .ant-layout-header{
-    height:60px;
-    background:#001529;
-    display:flex;
-    align-items:center;
-  }
-`
+export default App;

@@ -19,21 +19,21 @@ const PROD = MODE === 'production'
 const { PORT, GOOGLE_LOGIN_CLIENT_ID } = process.env
 
 const config = {
-  entry: {
-    vendor: [
-      'react',
-      'react-dom',
-      'react-router',
-      'react-router-dom',
-      'redux',
-      'react-redux',
-      'redux-thunk',
-      'redux-logger',
-    ],
-    index: [
-      './src/index.tsx'
-    ]
-  },
+  // entry: {
+  //   vendor: [
+  //     'react',
+  //     'react-dom',
+  //     'react-router',
+  //     'react-router-dom',
+  //     'redux',
+  //     'react-redux',
+  //     'redux-thunk',
+  //     'redux-logger',
+  //   ],
+  //   index: [
+  //     './src/index.tsx'
+  //   ]
+  // },
   output: {
     path: OUTPUT_PATH,
     filename: 'js/[name].bundle.js',
